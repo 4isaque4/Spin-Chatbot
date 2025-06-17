@@ -5,7 +5,7 @@ import Header from './components/Header.jsx';
 import ChatWindow from './components/ChatWindow.jsx';
 import ChatInput from './components/ChatInput.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import { useDifyAPI } from './hooks/userDifyAPI.js'; // A correção está aqui
+import { useDifyAPI } from './hooks/userDifyAPI.js';
 import './styles.css';
 
 function App() {
@@ -15,10 +15,11 @@ function App() {
     isLoading, 
     sendMessage, 
     switchConversation, 
-    startNewConversation 
+    startNewConversation,
+    renameConversation, // <-- Nova função
+    deleteConversation  // <-- Nova função
   } = useDifyAPI();
 
-  // Encontra a conversa ativa para passar as mensagens corretas
   const activeConversation = conversations.find(c => c.id === activeConversationId) || { messages: [] };
 
   return (
@@ -28,6 +29,8 @@ function App() {
         activeConversationId={activeConversationId}
         switchConversation={switchConversation}
         startNewConversation={startNewConversation}
+        renameConversation={renameConversation} // <-- Passando a prop
+        deleteConversation={deleteConversation} // <-- Passando a prop
       />
       <div className="chat-container">
         <Header />
