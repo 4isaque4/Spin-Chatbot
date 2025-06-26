@@ -2,7 +2,7 @@
 
 .chat-header {
   display: flex;
-  align-items: center; /* Alinha verticalmente o logo e o título */
+  align-items: center; 
   padding: 1rem 1.5rem;
   background: linear-gradient(135deg, #004a80 0%, #003366 100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -10,23 +10,20 @@
   z-index: 10;
 }
 
-/* --- INÍCIO DA CORREÇÃO PRINCIPAL --- */
+
 .chat-header img {
-  height: 50px;       /* Define uma altura fixa para a imagem */
-  width: auto;        /* Deixa a largura ser automática para manter a proporção */
-  display: block;     /* Garante que a imagem seja tratada como um bloco */
-  flex-shrink: 0;   /* Impede que a imagem seja espremida pelo layout flex */
+  height: 50px;       
+  width: auto;        
+  display: block;   
+  flex-shrink: 0;  
 }
-/* --- FIM DA CORREÇÃO PRINCIPAL --- */
+
 
 
 .chat-header h1 {
-  flex-grow: 1;           /* Faz o título ocupar o espaço restante */
-  text-align: center;     /* Centraliza o texto dentro desse espaço */
+  flex-grow: 1;           
+  text-align: center;    
   margin: 0;
-  /* Adiciona um preenchimento à direita para compensar o espaço do logo, 
-     resultando em uma centralização visualmente mais precisa.
-     O valor deve ser um pouco maior que a altura do logo. */
   padding-right: 60px; 
   font-size: 1.6rem;
   font-weight: 600;
