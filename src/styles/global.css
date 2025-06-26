@@ -1,0 +1,20 @@
+/* src/styles/global.css */
+
+:root {
+  --primary-color: #003366; /* Azul escuro da Spin */
+  --secondary-color: #00AEEF; /* Azul claro da Spin */
+  --background-color: #f0f2f5;
+  --text-color: #333;
+  --font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Impede a rolagem do body */
+}

@@ -1,0 +1,106 @@
+/* src/styles/chat.css */
+
+.chat-header {
+  display: flex;
+  align-items: center; /* Alinha verticalmente o logo e o título */
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #004a80 0%, #003366 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+/* --- INÍCIO DA CORREÇÃO PRINCIPAL --- */
+.chat-header img {
+  height: 50px;       /* Define uma altura fixa para a imagem */
+  width: auto;        /* Deixa a largura ser automática para manter a proporção */
+  display: block;     /* Garante que a imagem seja tratada como um bloco */
+  flex-shrink: 0;   /* Impede que a imagem seja espremida pelo layout flex */
+}
+/* --- FIM DA CORREÇÃO PRINCIPAL --- */
+
+
+.chat-header h1 {
+  flex-grow: 1;           /* Faz o título ocupar o espaço restante */
+  text-align: center;     /* Centraliza o texto dentro desse espaço */
+  margin: 0;
+  /* Adiciona um preenchimento à direita para compensar o espaço do logo, 
+     resultando em uma centralização visualmente mais precisa.
+     O valor deve ser um pouco maior que a altura do logo. */
+  padding-right: 60px; 
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.chat-window {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: var(--secondary-color);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.bot-message {
+  background-color: #e9e9eb;
+  color: var(--text-color);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.typing-indicator {
+  align-self: flex-start;
+  font-style: italic;
+  color: #888;
+}
+
+.chat-input-form {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.chat-input-form input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.chat-input-form input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.chat-input-form button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

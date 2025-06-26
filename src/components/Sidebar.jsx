@@ -1,7 +1,6 @@
 // src/components/Sidebar.jsx
-
 import React, { useState, useEffect, useRef } from 'react';
-import ConfirmationModal from './ConfirmationModal.jsx'; // Importa o novo modal
+import ConfirmationModal from './ConfirmationModal.jsx';
 
 const Sidebar = ({ 
   conversations, 
@@ -9,11 +8,12 @@ const Sidebar = ({
   switchConversation, 
   startNewConversation,
   renameConversation,
-  deleteConversation
+  deleteConversation,
+  onLogout // Nova prop para a função de logout
 }) => {
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
-  const [deletingId, setDeletingId] = useState(null); // Estado para controlar o modal de deleção
+  const [deletingId, setDeletingId] = useState(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -44,13 +44,13 @@ const Sidebar = ({
   
   const handleDeleteClick = (e, id) => {
     e.stopPropagation();
-    setDeletingId(id); // Em vez de window.confirm, apenas define o ID para deleção
+    setDeletingId(id);
   }
 
   const handleConfirmDelete = () => {
     if (deletingId) {
       deleteConversation(deletingId);
-      setDeletingId(null); // Fecha o modal
+      setDeletingId(null);
     }
   };
 
@@ -63,39 +63,45 @@ const Sidebar = ({
         message="Tem certeza que deseja deletar esta conversa?"
       />
       <div className="sidebar">
-        {/* O "+" foi removido daqui */}
-        <button className="new-chat-button" onClick={startNewConversation}>
-          Nova Conversa
-        </button>
-        <div className="sidebar-title">Conversas</div>
-        <ul className="conversation-list">
-          {conversations.map(conv => (
-            <li
-              key={conv.id}
-              className={`conversation-item ${conv.id === activeConversationId ? 'active' : ''}`}
-              onClick={() => editingId !== conv.id && switchConversation(conv.id)}
-            >
-              {editingId === conv.id ? (
-                <input
-                  ref={inputRef}
-                  type="text"
-                  className="rename-input"
-                  value={editingText}
-                  onChange={(e) => setEditingText(e.target.value)}
-                  onBlur={handleConfirmEdit}
-                  onKeyDown={handleKeyDown}
-                />
-              ) : (
-                <span className="conversation-name">{conv.name}</span>
-              )}
+        <div> {/* Div extra para agrupar a parte de cima */}
+          <button className="new-chat-button" onClick={startNewConversation}>
+            Nova Conversa
+          </button>
+          <div className="sidebar-title">Conversas</div>
+          <ul className="conversation-list">
+            {conversations.map(conv => (
+              <li
+                key={conv.id}
+                className={`conversation-item ${conv.id === activeConversationId ? 'active' : ''}`}
+                onClick={() => editingId !== conv.id && switchConversation(conv.id)}
+              >
+                {editingId === conv.id ? (
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    className="rename-input"
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                    onBlur={handleConfirmEdit}
+                    onKeyDown={handleKeyDown}
+                  />
+                ) : (
+                  <span className="conversation-name">{conv.name}</span>
+                )}
 
-              <div className="conversation-actions">
-                <button className="action-icon" onClick={() => handleStartEdit(conv)}>✏️</button>
-                <button className="action-icon" onClick={(e) => handleDeleteClick(e, conv.id)}>🗑️</button>
-              </div>
-            </li>
-          ))}
-        </ul>
+                <div className="conversation-actions">
+                  <button className="action-icon" onClick={() => handleStartEdit(conv)}>✏️</button>
+                  <button className="action-icon" onClick={(e) => handleDeleteClick(e, conv.id)}>🗑️</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* --- NOVO BOTÃO DE SAIR --- */}
+        <button className="logout-button" onClick={onLogout}>
+          Sair
+        </button>
+        {/* --- FIM DO NOVO BOTÃO --- */}
       </div>
     </>
   );
