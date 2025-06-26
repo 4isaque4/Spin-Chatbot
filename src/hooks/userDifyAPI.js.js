@@ -22,7 +22,6 @@ export const useDifyAPI = () => {
 
   const startNewConversation = () => {
     const newConversation = createNewConversation();
-    // Renomeia para diferenciar se já houver uma "Nova Conversa"
     const existingNames = conversations.map(c => c.name);
     let newName = newConversation.name;
     let counter = 2;
@@ -36,7 +35,6 @@ export const useDifyAPI = () => {
     setActiveConversationId(newConversation.id);
   };
 
-  // NOVA FUNÇÃO: Renomear conversa
   const renameConversation = (id, newName) => {
     if (!newName.trim()) return;
     setConversations(prev => 
@@ -44,7 +42,6 @@ export const useDifyAPI = () => {
     );
   };
 
-  // NOVA FUNÇÃO: Deletar conversa
   const deleteConversation = (idToDelete) => {
     setConversations(prev => {
       const remaining = prev.filter(c => c.id !== idToDelete);
@@ -64,7 +61,6 @@ export const useDifyAPI = () => {
   };
 
   const sendMessage = async (userMessage) => {
-    // ... (O restante da função sendMessage continua exatamente o mesmo de antes)
     if (!userMessage.trim()) return;
     const activeConvIndex = conversations.findIndex(c => c.id === activeConversationId);
     if (activeConvIndex === -1) return;
@@ -141,7 +137,6 @@ export const useDifyAPI = () => {
     }
   };
 
-  // Exporta as novas funções
   return { 
     conversations, 
     activeConversationId, 
